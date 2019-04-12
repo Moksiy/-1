@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Практическая_работа__1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="600">
-    <Grid Width="600" Height="400">
-        <Button Content="Рассчитать" HorizontalAlignment="Left" Margin="222,306,0,0" VerticalAlignment="Top" Width="153" Height="38" RenderTransformOrigin="0.5,0.5"/>
+        Title="" Height="400" Width="500">
+    <Grid Width="500" Height="400" Background="#FF2E2E2E">
+        <Button Name ="Calculate" Content="Рассчитать" Margin="182,315,182,0" VerticalAlignment="Top" Height="40" RenderTransformOrigin="0.5,0.5" Background="#FF8C8C8C" FontFamily="Yu Gothic UI Semibold" FontSize="22" Click="Button_Click"/>
+        <TextBox Name ="X1" HorizontalAlignment="Left" Height="60" Margin="117,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="20" Background="#FF898989" SelectionOpacity="4" TextDecorations="{x:Null}" TextAlignment="Center" TextChanged="X1_TextChanged"/>
+        <TextBox Name ="X2" HorizontalAlignment="Left" Height="60" Margin="220,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox Name ="X3" HorizontalAlignment="Left" Height="60" Margin="318,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox Name ="X5" HorizontalAlignment="Left" Height="60" Margin="220,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox Name ="X6" HorizontalAlignment="Left" Height="60" Margin="318,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox Name ="X4" HorizontalAlignment="Left" Height="60" Margin="117,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox Name ="X8" Margin="220,210,220,130" TextWrapping="Wrap" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox Name ="X9" Margin="318,210,122,130" TextWrapping="Wrap" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox Name ="X7" HorizontalAlignment="Left" Height="60" Margin="117,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <Button Content="" Height="10" VerticalAlignment="Top" Margin="50,0" Click="Button_Click_1"/>
     </Grid>
 </Window>
