@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace Практическая_работа__1
 {
@@ -38,7 +39,8 @@ namespace Практическая_работа__1
             }
             else
             {
-                Calculation();
+                int [] result = Calculation();
+                PrintResult(result);
             }
 
         }
@@ -77,8 +79,26 @@ namespace Практическая_работа__1
 
             int[] res = new int[9];
 
-
             return res;
+        }
+
+        private void CharacterOfMatrix()
+        {
+
+        }
+
+        private void PrintResult(int[] res)
+        {
+            Thread.Sleep(500);
+            X1.Text = Convert.ToString(res[0]);
+            X2.Text = Convert.ToString(res[1]);
+            X3.Text = Convert.ToString(res[2]);
+            X4.Text = Convert.ToString(res[3]);
+            X5.Text = Convert.ToString(res[4]);
+            X6.Text = Convert.ToString(res[5]);
+            X7.Text = Convert.ToString(res[6]);
+            X8.Text = Convert.ToString(res[7]);
+            X9.Text = Convert.ToString(res[8]);
         }
     }
 }
