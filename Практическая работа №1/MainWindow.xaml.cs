@@ -19,6 +19,18 @@ namespace Практическая_работа__1
     /// <summary>
     /// Логика (её нет) взаимодействия для MainWindow.xaml
     /// </summary>
+    /// 
+    #region Порядок нахождения жордановой формы матрицы
+    /*
+ 
+     1) Нахождение характеристического многочлена по формуле (только коэффициенты) в методе CharacterOfMatrix()
+     2) Нахождение корней характеристического многочлена
+     3) Составление таблицы элементарных делителей по инвариантным множителям
+     4) По элементарным делителям нахождение жордановой формы матрицы
+
+    */
+    #endregion
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -40,7 +52,7 @@ namespace Практическая_работа__1
             }
             else
             {
-                int[] result = Calculation();
+                double[] result = Calculation();
                 PrintResult(result);
             }
 
@@ -66,7 +78,7 @@ namespace Практическая_работа__1
             return res;
         }
 
-        private int[] Calculation()
+        private double[] Calculation()
         {
             int[] x = new int[9];
             x[0] = int.Parse(X1.Text);
@@ -81,15 +93,15 @@ namespace Практическая_работа__1
 
             CharacterOfMatrix(x);
 
-            int[] res = new int[9];
+            double[] res = new double[9];
 
             return res;
         }
 
         //Нахождение характеристического многочлена матрицы и нахождение его корней 
-        private int[] CharacterOfMatrix(int[] matrix)
+        private double[] CharacterOfMatrix(int[] matrix)
         {
-            int[] resCharacter = new int[3];
+            double[] resCharacter = new double[3];
 
             //Коэффициенты для кубического уравнения
             int a, b, c;
@@ -102,18 +114,16 @@ namespace Практическая_работа__1
 
             int det = Determinant(matrix);
 
-            CubicEquation(a, b, c, det);
+            resCharacter =  CubicEquation(a, b, c, det);
 
             return resCharacter;
         }
 
-        //Решение кубического уравнения
-        private int[] CubicEquation(int a, int b, int c, int d)
+        //Нахождение корней кубического уравнения
+        private double[] CubicEquation(int a, int b, int c, int d)
         {
-            int[] res = new int[3];
-
-
-
+            double[] res = new double[3];
+            
             return res;
         }
 
@@ -129,7 +139,7 @@ namespace Практическая_работа__1
         }
 
         //Вывод
-        private void PrintResult(int[] res)
+        private void PrintResult(double[] res)
         {
             Thread.Sleep(500);
             X1.Text = Convert.ToString(res[0]);
