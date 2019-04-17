@@ -17,7 +17,7 @@ using System.Threading;
 namespace Практическая_работа__1
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика (её нет) взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -31,6 +31,7 @@ namespace Практическая_работа__1
 
         }
 
+        //Главная конпка РАССЧИТАТЬ
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (!TryParseX())
@@ -39,15 +40,16 @@ namespace Практическая_работа__1
             }
             else
             {
-                int [] result = Calculation();
+                int[] result = Calculation();
                 PrintResult(result);
             }
 
         }
 
+        //Вывод задания
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("ПП1-3-6 Напишите программу нахождения\n      жордановой формы матрицы 3 × 3.");            
+            MessageBox.Show("ПП1-3-6 Напишите программу нахождения\n      жордановой формы матрицы 3 × 3.");
         }
 
         private bool TryParseX()
@@ -77,16 +79,56 @@ namespace Практическая_работа__1
             x[7] = int.Parse(X8.Text);
             x[8] = int.Parse(X9.Text);
 
+            CharacterOfMatrix(x);
+
             int[] res = new int[9];
 
             return res;
         }
 
-        private void CharacterOfMatrix()
+        //Нахождение характеристического многочлена матрицы и нахождение его корней 
+        private int[] CharacterOfMatrix(int[] matrix)
         {
+            int[] resCharacter = new int[3];
 
+            //Коэффициенты для кубического уравнения
+            int a, b, c;
+
+            a = -1;
+
+            b = matrix[0] + matrix[4] + matrix[8];
+
+            c = -((matrix[4] * matrix[8]) + (matrix[0] * matrix[8]) + (matrix[0] * matrix[4]) - (matrix[5] * matrix[7]) - (matrix[1] * matrix[3]) - (matrix[2] * matrix[6]));
+
+            int det = Determinant(matrix);
+
+            CubicEquation(a, b, c, det);
+
+            return resCharacter;
         }
 
+        //Решение кубического уравнения
+        private int[] CubicEquation(int a, int b, int c, int d)
+        {
+            int[] res = new int[3];
+
+
+
+            return res;
+        }
+
+        //Нахождение определителя матрицы
+        private int Determinant(int[] mat)
+        {
+            int determinant;
+
+            determinant = ((mat[0] * mat[4] * mat[8]) + (mat[6] * mat[1] * mat[5]) + (mat[2] * mat[3] * mat[7])
+                - (mat[6] * mat[4] * mat[2]) - (mat[3] * mat[1] * mat[8]) - (mat[7] * mat[5] * mat[0]));
+
+            return determinant;
+        }
+
+        //Вывод
         private void PrintResult(int[] res)
         {
             Thread.Sleep(500);
