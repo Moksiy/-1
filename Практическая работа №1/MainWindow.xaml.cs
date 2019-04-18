@@ -123,7 +123,23 @@ namespace Практическая_работа__1
         private double[] CubicEquation(int a, int b, int c, int d)
         {
             double[] res = new double[3];
-            
+            a = 2; b = -3; c = -3; d = 2;
+            double Q, R, FI, S;
+            Q = ((a * a) - 3 * b) / 9;
+            R = ((2 * Math.Pow(a, 3)) - (9 * a * b) + (27 * c)) / 54;
+            S = (Math.Pow(Q,3) - Math.Pow(R,2));
+            if (S > 0) {
+                FI = (1.0 / 3) * Math.Acos(R / Math.Sqrt(Math.Pow(Q, 3)));
+                res[0] = -2 * Math.Sqrt(Q) * Math.Cos(FI) - (a / 3.0);
+                res[1] = -2 * Math.Sqrt(Q) * Math.Cos(FI + ((2.0 / 3) * Math.PI)) - a / 3;
+                res[2] = -2 * Math.Sqrt(Q) * Math.Cos(FI - ((2.0 / 3) * Math.PI)) - a / 3;
+            } else if (S < 0) { FI = Math.Cosh(Math.Abs(R) / Math.Pow(Math.Abs(Q), 1.5)) / 3;
+                res[0] = -2 * Math.Sign(R) * Math.Sqrt(Math.Abs(Q)) * Math.Sinh(FI) - a / 3;
+                res[1] = res[0]; res[2] = res[0];
+            } else { res[0] = -2 * Math.Pow(R, 1.5) - a / 3;
+                res[1] = Math.Pow(R, 1.5) - a / 3;
+                res[2] = res[1];
+            }
             return res;
         }
 
