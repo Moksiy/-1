@@ -123,7 +123,7 @@ namespace Практическая_работа__1
         private double[] CubicEquation(int a, int b, int c, int d)
         {
             double aa, bb, cc;
-            a = 5; b = -8; c = -8; d = 5;
+            //a = 5; b = -8; c = -8; d = 5;
             aa = b / a; bb = c / a; cc = d / a;
             double[] res = new double[3];
             double Q, R, S, FI, X;
@@ -140,12 +140,12 @@ namespace Практическая_работа__1
             {
                 X = Math.Abs(R)/Math.Sqrt(Math.Pow(Q,3));
                 FI = ((Math.Log10(X + Math.Sqrt(X*X - 1)))) / 3;
-                res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) * Math.Cosh(FI) - (a / 3);
+                res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) * Math.Cosh(FI) - (aa / 3);
                 res[1] = res[0]; res[2] = res[0];
             }else
             {
-                res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) - (a / 3);
-                res[1] = Math.Sign(R) * Math.Sqrt(Q) - (a / 3);
+                res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) - (aa / 3);
+                res[1] = Math.Sign(R) * Math.Sqrt(Q) - (aa / 3);
                 res[2] = res[1];
             }
             res[0] = Math.Round(res[0]);
