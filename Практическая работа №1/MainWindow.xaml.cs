@@ -24,7 +24,7 @@ namespace Практическая_работа__1
     /*
  
      1) Нахождение характеристического многочлена по формуле (только коэффициенты) в методе CharacterOfMatrix()
-     2) Нахождение корней характеристического многочлена
+     2) Нахождение корней характеристического многочлена -> инвариантные множители матрицы
      3) Составление таблицы элементарных делителей по инвариантным множителям
      4) По элементарным делителям нахождение жордановой формы матрицы
 
@@ -90,12 +90,12 @@ namespace Практическая_работа__1
             x[6] = int.Parse(X7.Text);
             x[7] = int.Parse(X8.Text);
             x[8] = int.Parse(X9.Text);
-
-            CharacterOfMatrix(x);
-
+            double[] inv = new double[9];
+            double[] eigenvalue = new double[3];
+            eigenvalue = CharacterOfMatrix(x);
+            inv = Invariant(eigenvalue);
             double[] res = new double[9];
-
-            //
+            //Еще что-то
 
             //res = JordanForm();
 
@@ -106,22 +106,13 @@ namespace Практическая_работа__1
         private double[] CharacterOfMatrix(int[] matrix)
         {
             double[] resCharacter = new double[3];
-
             //Коэффициенты для кубического уравнения
             int a, b, c;
-
             a = -1;
-
             b = matrix[0] + matrix[4] + matrix[8];
-
             c = -((matrix[4] * matrix[8]) + (matrix[0] * matrix[8]) + (matrix[0] * matrix[4]) - (matrix[5] * matrix[7]) - (matrix[1] * matrix[3]) - (matrix[2] * matrix[6]));
-
             int det = Determinant(matrix);
-
             resCharacter =  CubicEquation(a, b, c, det);
-
-
-
             return resCharacter;
         }
 
@@ -184,6 +175,13 @@ namespace Практическая_работа__1
             X7.Text = Convert.ToString(res[6]);
             X8.Text = Convert.ToString(res[7]);
             X9.Text = Convert.ToString(res[8]);
+        }
+
+        private double[] Invariant(double[] inv)
+        {
+            double[] res = new double[9];
+
+            return res;
         }
     }
 }
