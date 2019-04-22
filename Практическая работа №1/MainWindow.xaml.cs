@@ -122,24 +122,35 @@ namespace Практическая_работа__1
         //Нахождение корней кубического уравнения
         private double[] CubicEquation(int a, int b, int c, int d)
         {
+            double aa, bb, cc;
+            a = 5; b = -8; c = -8; d = 5;
+            aa = b / a; bb = c / a; cc = d / a;
             double[] res = new double[3];
-            a = 2; b = -3; c = -3; d = 2;
-            double Q, R, FI, S;
-            Q = ((a * a) - 3 * b) / 9;
-            R = ((2 * Math.Pow(a, 3)) - (9 * a * b) + (27 * c)) / 54;
-            S = (Math.Pow(Q,3) - Math.Pow(R,2));
-            if (S > 0) {
-                FI = (1.0 / 3) * Math.Acos(R / Math.Sqrt(Math.Pow(Q, 3)));
-                res[0] = -2 * Math.Sqrt(Q) * Math.Cos(FI) - (a / 3.0);
-                res[1] = -2 * Math.Sqrt(Q) * Math.Cos(FI + ((2.0 / 3) * Math.PI)) - a / 3;
-                res[2] = -2 * Math.Sqrt(Q) * Math.Cos(FI - ((2.0 / 3) * Math.PI)) - a / 3;
-            } else if (S < 0) { FI = Math.Cosh(Math.Abs(R) / Math.Pow(Math.Abs(Q), 1.5)) / 3;
-                res[0] = -2 * Math.Sign(R) * Math.Sqrt(Math.Abs(Q)) * Math.Sinh(FI) - a / 3;
+            double Q, R, S, FI, X;
+            Q = (aa*aa-3*bb) / 9;
+            R = (2*aa*aa*aa-9*aa*bb+27*cc)/54;
+            S = Q * Q * Q - R * R;
+            if (S>0)
+            {
+                FI = (Math.Acos(R / Math.Sqrt(Math.Pow(Q,3))))/3;
+                res[0] = -2 * Math.Sqrt(Q) * Math.Cos(FI) - (aa / 3);
+                res[1] = -2 * Math.Sqrt(Q) * Math.Cos(FI+(2*Math.PI/3)) - (aa / 3);
+                res[2] = -2 * Math.Sqrt(Q) * Math.Cos(FI - (2 * Math.PI / 3)) - (aa / 3);
+            }else if (S < 0)
+            {
+                X = Math.Abs(R)/Math.Sqrt(Math.Pow(Q,3));
+                FI = ((Math.Log10(X + Math.Sqrt(X*X - 1)))) / 3;
+                res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) * Math.Cosh(FI) - (a / 3);
                 res[1] = res[0]; res[2] = res[0];
-            } else { res[0] = -2 * Math.Pow(R, 1.5) - a / 3;
-                res[1] = Math.Pow(R, 1.5) - a / 3;
+            }else
+            {
+                res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) - (a / 3);
+                res[1] = Math.Sign(R) * Math.Sqrt(Q) - (a / 3);
                 res[2] = res[1];
             }
+            res[0] = Math.Round(res[0]);
+            res[1] = Math.Round(res[1]);
+            res[2] = Math.Round(res[2]);
             return res;
         }
 
