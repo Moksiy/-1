@@ -95,6 +95,10 @@ namespace Практическая_работа__1
 
             double[] res = new double[9];
 
+            //
+
+            //res = JordanForm();
+
             return res;
         }
 
@@ -115,6 +119,8 @@ namespace Практическая_работа__1
             int det = Determinant(matrix);
 
             resCharacter =  CubicEquation(a, b, c, det);
+
+
 
             return resCharacter;
         }
@@ -146,7 +152,7 @@ namespace Практическая_работа__1
             {
                 res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) - (aa / 3);
                 res[1] = Math.Sign(R) * Math.Sqrt(Q) - (aa / 3);
-                res[2] = res[1];
+                res[2] = res[0];
             }
             res[0] = Math.Round(res[0]);
             res[1] = Math.Round(res[1]);
