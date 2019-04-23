@@ -19,7 +19,7 @@ namespace Практическая_работа__1
     /// <summary>
     /// Логика (её нет) взаимодействия для MainWindow.xaml
     /// </summary>
-    /// 
+
     #region Порядок нахождения жордановой формы матрицы
     /*
  
@@ -120,7 +120,6 @@ namespace Практическая_работа__1
         private double[] CubicEquation(int a, int b, int c, int d)
         {
             double aa, bb, cc;
-            //a = 5; b = -8; c = -8; d = 5;
             aa = b / a; bb = c / a; cc = d / a;
             double[] res = new double[3];
             double Q, R, S, FI, X;
