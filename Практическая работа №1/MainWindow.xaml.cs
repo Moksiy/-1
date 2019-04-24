@@ -94,7 +94,7 @@ namespace Практическая_работа__1
             double[] eigenvalue = new double[3];
             eigenvalue = CharacterOfMatrix(x);
             double[] res = new double[9];
-            res = st(eigenvalue);
+            res = st(eigenvalue, x);
             return res;
         }
 
@@ -172,7 +172,7 @@ namespace Практическая_работа__1
             X9.Text = Convert.ToString(res[8]);
         }
 
-        private double[] st(double[] eigen)
+        private double[] st(double[] eigen, int[] matrix)
         {
             double[] res = new double[9];
 
@@ -182,6 +182,9 @@ namespace Практическая_работа__1
             }else if (eigen[0] == eigen[1] && eigen[1] == eigen[2])
             {
                 res = Answer2(eigen);
+            }else
+            {
+                res = Answer3(eigen, matrix);
             }
             return res;
         }
@@ -202,6 +205,7 @@ namespace Практическая_работа__1
             return answer;
         }
 
+        //Собственные значения равны
         private double[] Answer2(double[] x)
         {
             double[] answer = new double[9];
@@ -217,11 +221,28 @@ namespace Практическая_работа__1
             return answer;
         }
 
+        //Два разных значения
+        private double[] Answer3(double[] x, int[] matrix)
+        {
+            double[] answer = new double[9];
+            int rank = Rank(matrix);
+            answer[0] = x[0];
+            if (x[0] == x[1]) { answer[1] = 1; } else { answer[1] = 0; }
+            answer[2] = 0;
+            answer[3] = 0;
+            answer[4] = x[1];
+            if (x[1] == x[2]) { answer[5] = 1; } else { answer[5] = 0; }
+            answer[6] = 0;
+            answer[7] = 0;
+            answer[8] = x[2];
+            return answer;
+        }
+
         //Подсчет ранга матрицы
-        private int Rank(double[] matrix)
+        private int Rank(int[] matrix)
         {
             int answer = 0;
-
+            if (Determinant(matrix) == 0) { answer = 2; } else if (Determinant(matrix) > 0) { answer = 3; } else { answer = 0; }
             return answer;
         }
 
