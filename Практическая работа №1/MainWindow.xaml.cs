@@ -24,7 +24,7 @@ namespace Практическая_работа__1
     /*
  
      1) Нахождение характеристического многочлена по формуле (только коэффициенты) в методе CharacterOfMatrix()
-     2) Нахождение корней характеристического многочлена -> инвариантные множители матрицы
+     2) Нахождение корней характеристического многочлена 
      3) Составление таблицы элементарных делителей по инвариантным множителям
      4) По элементарным делителям нахождение жордановой формы матрицы
 
@@ -93,12 +93,8 @@ namespace Практическая_работа__1
             double[] inv = new double[9];
             double[] eigenvalue = new double[3];
             eigenvalue = CharacterOfMatrix(x);
-            inv = Invariant(eigenvalue);
             double[] res = new double[9];
-            //Еще что-то
-
-            //res = JordanForm();
-
+            res = st(eigenvalue);
             return res;
         }
 
@@ -130,7 +126,7 @@ namespace Практическая_работа__1
             {
                 FI = (Math.Acos(R / Math.Sqrt(Math.Pow(Q,3))))/3;
                 res[0] = -2 * Math.Sqrt(Q) * Math.Cos(FI) - (aa / 3);
-                res[1] = -2 * Math.Sqrt(Q) * Math.Cos(FI+(2*Math.PI/3)) - (aa / 3);
+                res[1] = -2 * Math.Sqrt(Q) * Math.Cos(FI + (2 * Math.PI / 3)) - (aa / 3);
                 res[2] = -2 * Math.Sqrt(Q) * Math.Cos(FI - (2 * Math.PI / 3)) - (aa / 3);
             }else if (S < 0)
             {
@@ -142,11 +138,11 @@ namespace Практическая_работа__1
             {
                 res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) - (aa / 3);
                 res[1] = Math.Sign(R) * Math.Sqrt(Q) - (aa / 3);
-                res[2] = res[0];
+                res[2] = res[1];
             }
             res[0] = Math.Round(res[0]);
             res[1] = Math.Round(res[1]);
-            res[2] = Math.Round(res[2]);
+            res[2] = Math.Round(res[2]);            
             return res;
         }
 
@@ -176,11 +172,59 @@ namespace Практическая_работа__1
             X9.Text = Convert.ToString(res[8]);
         }
 
-        private double[] Invariant(double[] inv)
+        private double[] st(double[] eigen)
         {
             double[] res = new double[9];
 
+            if (eigen[0] != eigen[1] && eigen[1] != eigen[2] && eigen[0] != eigen[2])
+            {
+                res = Answer1(eigen);
+            }else if (eigen[0] == eigen[1] && eigen[1] == eigen[2])
+            {
+                res = Answer2(eigen);
+            }
             return res;
         }
+
+        //Собственные значения разные
+        private double[] Answer1(double[] x)
+        {
+            double[] answer = new double[9];
+            answer[0] = x[0];
+            answer[1] = 0;
+            answer[2] = 0;
+            answer[3] = 0;
+            answer[4] = x[1];
+            answer[5] = 0;
+            answer[6] = 0;
+            answer[7] = 0;
+            answer[8] = x[2];
+            return answer;
+        }
+
+        private double[] Answer2(double[] x)
+        {
+            double[] answer = new double[9];
+            answer[0] = x[0];
+            answer[1] = 1;
+            answer[2] = 0;
+            answer[3] = 0;
+            answer[4] = x[1];
+            answer[5] = 1;
+            answer[6] = 0;
+            answer[7] = 0;
+            answer[8] = x[2];
+            return answer;
+        }
+
+        //Подсчет ранга матрицы
+        private int Rank(double[] matrix)
+        {
+            int answer = 0;
+
+            return answer;
+        }
+
+
     }
 }
