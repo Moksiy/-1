@@ -22,7 +22,6 @@ namespace Практическая_работа__1
 
     #region Порядок нахождения жордановой формы матрицы
     /*
- 
      1) Нахождение характеристического многочлена по формуле (только коэффициенты) в методе CharacterOfMatrix()
      2) Нахождение корней характеристического многочлена 
      3) Составление таблицы элементарных делителей по инвариантным множителям
@@ -94,6 +93,7 @@ namespace Практическая_работа__1
             double[] eigenvalue = new double[3];
             eigenvalue = CharacterOfMatrix(x);
             double[] res = new double[9];
+            x = CharacterMatrix(x, eigenvalue);
             res = st(eigenvalue, x);
             return res;
         }
@@ -181,11 +181,27 @@ namespace Практическая_работа__1
                 res = Answer1(eigen);
             }else if (eigen[0] == eigen[1] && eigen[1] == eigen[2])
             {
-                res = Answer2(eigen);
+                res = Answer2(eigen, matrix);
             }else
             {
                 res = Answer3(eigen, matrix);
             }
+            return res;
+        }
+
+        //Составление характеристической матрицы
+        private int[] CharacterMatrix(int[] matrix, double[] eigenval)
+        {
+            int[] res = new int[9];
+            res[0] = matrix[0] - (int)eigenval[0];
+            res[1] = matrix[1];
+            res[2] = matrix[2];
+            res[3] = matrix[3];
+            res[4] = matrix[4] - (int)eigenval[1];
+            res[5] = matrix[5];
+            res[6] = matrix[6];
+            res[7] = matrix[7];
+            res[8] = matrix[8] - (int)eigenval[2];
             return res;
         }
 
@@ -206,15 +222,16 @@ namespace Практическая_работа__1
         }
 
         //Собственные значения равны
-        private double[] Answer2(double[] x)
+        private double[] Answer2(double[] x, int[] matrix)
         {
+            int rank = Rank(matrix);
             double[] answer = new double[9];
             answer[0] = x[0];
-            answer[1] = 1;
+            if (rank == 1) { answer[1] = 1; } else if (rank == 2){ answer[1] = 1; } else { answer[1] = 0; }
             answer[2] = 0;
             answer[3] = 0;
             answer[4] = x[1];
-            answer[5] = 1;
+            if (rank == 1) { answer[5] = 0; } else if (rank == 2){ answer[5] = 1; } else { answer[5] = 0; }
             answer[6] = 0;
             answer[7] = 0;
             answer[8] = x[2];
@@ -227,11 +244,11 @@ namespace Практическая_работа__1
             double[] answer = new double[9];
             int rank = Rank(matrix);
             answer[0] = x[0];
-            if (x[0] == x[1]) { answer[1] = 1; } else { answer[1] = 0; }
+            if (rank != 1 && x[0] == x[1]) { answer[1] = 1; } else { answer[1] = 0; }
             answer[2] = 0;
             answer[3] = 0;
             answer[4] = x[1];
-            if (x[1] == x[2]) { answer[5] = 1; } else { answer[5] = 0; }
+            if (rank != 1 && x[1] == x[2]) { answer[5] = 1; } else { answer[5] = 0; }
             answer[6] = 0;
             answer[7] = 0;
             answer[8] = x[2];
@@ -242,8 +259,32 @@ namespace Практическая_работа__1
         private int Rank(int[] matrix)
         {
             int answer = 0;
-            if (Determinant(matrix) == 0) { answer = 2; } else if (Determinant(matrix) > 0) { answer = 3; } else { answer = 0; }
+            if (Determinant(matrix) == 0)
+            {
+                int[] m = new int[9]; m = Minors(matrix);
+                if (m[0] == m[1] && m[1] == m[2] && m[2] == m[3] && m[3] == m[4] && m[4] == m[5] && m[5] == m[6] && m[6] == m[7] && m[7] == m[8])
+                {
+                    answer = 1;
+
+                }else { answer = 2; }
+            } else { answer = 3; }
             return answer;
+        }
+
+        //Подсчет миноров матрицы
+        private int[] Minors(int[] matrix)
+        {
+            int[] res = new int[9];
+            res[0] = (matrix[4] * matrix[8]) - (matrix[5] * matrix[7]);
+            res[1] = (matrix[3] * matrix[8]) - (matrix[5] * matrix[6]);
+            res[2] = (matrix[3] * matrix[7]) - (matrix[4] * matrix[6]);
+            res[3] = (matrix[1] * matrix[8]) - (matrix[2] * matrix[7]);
+            res[4] = (matrix[0] * matrix[8]) - (matrix[2] * matrix[6]);
+            res[5] = (matrix[0] * matrix[7]) - (matrix[1] * matrix[6]);
+            res[6] = (matrix[1] * matrix[5]) - (matrix[4] * matrix[2]);
+            res[7] = (matrix[0] * matrix[5]) - (matrix[3] * matrix[2]);
+            res[8] = (matrix[0] * matrix[4]) - (matrix[1] * matrix[3]);
+            return res;
         }
 
 
