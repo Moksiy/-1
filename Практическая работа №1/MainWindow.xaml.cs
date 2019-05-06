@@ -272,14 +272,16 @@ namespace Практическая_работа__1
         //Два разных значения
         private double[] Answer3(double[] x, int[] matrix)
         {
+            double s = 0;
+            if (x[1] == x[2]) { s = x[0]; x[2] = s; x[0] = x[1]; }
             double[] answer = new double[10];
             int rank = Rank(matrix);
             answer[0] = x[0];
-            if (rank == 1 && x[0] == x[1]) { answer[1] = 1; } else { answer[1] = 0; }
+            if (rank != 2 && x[0] == x[1] && matrix[9] != 1) { answer[1] = 1; } else { answer[1] = 0; }
             answer[2] = 0;
             answer[3] = 0;
             answer[4] = x[1]; 
-            if (rank == 1 && x[1] == x[2]) { answer[5] = 1; } else { answer[5] = 0; }
+            answer[5] = 0; 
             answer[6] = 0;
             answer[7] = 0;
             answer[8] = x[2];
