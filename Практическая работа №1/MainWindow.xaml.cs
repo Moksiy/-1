@@ -92,7 +92,7 @@ namespace Практическая_работа__1
             double[] inv = new double[9];
             double[] eigenvalue = new double[3];
             eigenvalue = CharacterOfMatrix(x);
-            double[] res = new double[9];
+            double[] res = new double[10];
             x = CharacterMatrix(x, eigenvalue);
             res = st(eigenvalue, x);
             return res;
@@ -108,7 +108,7 @@ namespace Практическая_работа__1
             b = matrix[0] + matrix[4] + matrix[8];
             c = -((matrix[4] * matrix[8]) + (matrix[0] * matrix[8]) + (matrix[0] * matrix[4]) - (matrix[5] * matrix[7]) - (matrix[1] * matrix[3]) - (matrix[2] * matrix[6]));
             int det = Determinant(matrix);
-            resCharacter =  CubicEquation(a, b, c, det);
+            resCharacter = CubicEquation(a, b, c, det);
             return resCharacter;
         }
 
@@ -117,24 +117,47 @@ namespace Практическая_работа__1
         {
             double aa, bb, cc;
             aa = b / a; bb = c / a; cc = d / a;
-            double[] res = new double[3];
+            double[] res = new double[4];
             double Q, R, S, FI, X;
-            Q = (aa*aa-3*bb) / 9;
-            R = (2*aa*aa*aa-9*aa*bb+27*cc)/54;
+            Q = (aa * aa - 3 * bb) / 9;
+            R = (2 * aa * aa * aa - 9 * aa * bb + 27 * cc) / 54;
             S = Q * Q * Q - R * R;
-            if (S>0)
+            if (S > 0)
             {
-                FI = (Math.Acos(R / Math.Sqrt(Math.Pow(Q,3))))/3;
+                FI = (Math.Acos(R / Math.Sqrt(Math.Pow(Q, 3)))) / 3;
                 res[0] = -2 * Math.Sqrt(Q) * Math.Cos(FI) - (aa / 3);
                 res[1] = -2 * Math.Sqrt(Q) * Math.Cos(FI + (2 * Math.PI / 3)) - (aa / 3);
                 res[2] = -2 * Math.Sqrt(Q) * Math.Cos(FI - (2 * Math.PI / 3)) - (aa / 3);
-            }else if (S < 0)
+            }
+            else if (S < 0)
             {
-                X = Math.Abs(R)/Math.Sqrt(Math.Pow(Q,3));
-                FI = ((Math.Log10(X + Math.Sqrt(X*X - 1)))) / 3;
-                res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) * Math.Cosh(FI) - (aa / 3);
-                res[1] = res[0]; res[2] = res[0];
-            }else
+                if (Q > 0)
+                {
+                    X = Math.Abs(R) / Math.Sqrt(Math.Pow(Q, 3));
+                    FI = (Math.Log10(X + Math.Sqrt(X * X - 1))) / 3;
+                    res[0] = (-2 * Math.Sign(R) * Math.Sqrt(Q) * Math.Cosh(FI)) - aa / 3;
+                    res[1] = Math.Sign(R)*Math.Sqrt(Q)*Math.Cosh(FI) - aa/3;
+                    res[2] = Math.Sqrt(3)*Math.Sqrt(Q)*Math.Sinh(FI);
+                    res[3] = 1;
+                }
+                else if (Q < 0)
+                {
+                    X = Math.Abs(R) / Math.Sqrt(Math.Pow(Math.Abs(Q), 3));
+                    FI = (Math.Log10(X + Math.Sqrt(X * X + 1))) / 3;
+                    res[0] = (-2 * Math.Sign(R) * Math.Sqrt(Math.Abs(Q)) * Math.Sinh(FI)) - aa / 3;
+                    res[1] = Math.Sign(R)*Math.Sqrt(Math.Abs(Q))*Math.Sinh(FI) - aa/3;
+                    res[2] = Math.Sqrt(3)*Math.Sqrt(Math.Abs(Q))*Math.Cosh(FI);
+                    res[3] = 1;
+                }
+                else
+                {
+                    res[0] = -Math.Sqrt(Math.Sqrt(c - (Math.Pow(aa,3)/27))) - aa/3;
+                    res[1] = -(a+res[0]/2);
+                    res[2] = Math.Sqrt(Math.Abs((aa-3*res[0])*(aa + res[0])-4*bb));
+                    res[3] = 1;
+                }
+            }
+            else // S==0
             {
                 res[0] = -2 * Math.Sign(R) * Math.Sqrt(Q) - (aa / 3);
                 res[1] = Math.Sign(R) * Math.Sqrt(Q) - (aa / 3);
@@ -142,7 +165,7 @@ namespace Практическая_работа__1
             }
             res[0] = Math.Round(res[0]);
             res[1] = Math.Round(res[1]);
-            res[2] = Math.Round(res[2]);            
+            res[2] = Math.Round(res[2]);
             return res;
         }
 
@@ -160,29 +183,33 @@ namespace Практическая_работа__1
         //Вывод
         private void PrintResult(double[] res)
         {
+            string s1 = Convert.ToString(res[4]) + " +i" + Convert.ToString(res[8]);
+            string s2 = Convert.ToString(res[4]) + " -i" + Convert.ToString(res[8]);
             Thread.Sleep(500);
             X1.Text = Convert.ToString(res[0]);
             X2.Text = Convert.ToString(res[1]);
             X3.Text = Convert.ToString(res[2]);
-            X4.Text = Convert.ToString(res[3]);
+            if (res[9] == 1) { X4.Text = s1; } else { X4.Text = Convert.ToString(res[3]); }
             X5.Text = Convert.ToString(res[4]);
             X6.Text = Convert.ToString(res[5]);
             X7.Text = Convert.ToString(res[6]);
             X8.Text = Convert.ToString(res[7]);
-            X9.Text = Convert.ToString(res[8]);
+            if (res[9] == 1) { X9.Text = s2; } else { X9.Text = Convert.ToString(res[9]); }
         }
 
         private double[] st(double[] eigen, int[] matrix)
         {
-            double[] res = new double[9];
+            double[] res = new double[10];
 
             if (eigen[0] != eigen[1] && eigen[1] != eigen[2] && eigen[0] != eigen[2])
             {
                 res = Answer1(eigen);
-            }else if (eigen[0] == eigen[1] && eigen[1] == eigen[2])
+            }
+            else if (eigen[0] == eigen[1] && eigen[1] == eigen[2])
             {
                 res = Answer2(eigen, matrix);
-            }else
+            }
+            else
             {
                 res = Answer3(eigen, matrix);
             }
@@ -227,11 +254,11 @@ namespace Практическая_работа__1
             int rank = Rank(matrix);
             double[] answer = new double[9];
             answer[0] = x[0];
-            if (rank == 1) { answer[1] = 1; } else if (rank == 2){ answer[1] = 1; } else { answer[1] = 0; }
+            if (rank == 1) { answer[1] = 1; } else if (rank == 2) { answer[1] = 1; } else { answer[1] = 0; }
             answer[2] = 0;
             answer[3] = 0;
             answer[4] = x[1];
-            if (rank == 1) { answer[5] = 0; } else if (rank == 2){ answer[5] = 1; } else { answer[5] = 0; }
+            if (rank == 1) { answer[5] = 0; } else if (rank == 2) { answer[5] = 1; } else { answer[5] = 0; }
             answer[6] = 0;
             answer[7] = 0;
             answer[8] = x[2];
@@ -241,17 +268,18 @@ namespace Практическая_работа__1
         //Два разных значения
         private double[] Answer3(double[] x, int[] matrix)
         {
-            double[] answer = new double[9];
+            double[] answer = new double[10];
             int rank = Rank(matrix);
             answer[0] = x[0];
             if (rank != 1 && x[0] == x[1]) { answer[1] = 1; } else { answer[1] = 0; }
             answer[2] = 0;
             answer[3] = 0;
-            answer[4] = x[1];
+            answer[4] = x[1]; 
             if (rank != 1 && x[1] == x[2]) { answer[5] = 1; } else { answer[5] = 0; }
             answer[6] = 0;
             answer[7] = 0;
             answer[8] = x[2];
+            if (x[3] == 1) { answer[9] = 1; }
             return answer;
         }
 
@@ -266,8 +294,10 @@ namespace Практическая_работа__1
                 {
                     answer = 1;
 
-                }else { answer = 2; }
-            } else { answer = 3; }
+                }
+                else { answer = 2; }
+            }
+            else { answer = 3; }
             return answer;
         }
 
