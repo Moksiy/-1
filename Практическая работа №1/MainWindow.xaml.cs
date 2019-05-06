@@ -51,7 +51,8 @@ namespace Практическая_работа__1
             }
             else
             {
-                double[] result = Calculation();
+                double[] result = new double[10];
+                result = Calculation();
                 PrintResult(result);
             }
 
@@ -90,7 +91,7 @@ namespace Практическая_работа__1
             x[7] = int.Parse(X8.Text);
             x[8] = int.Parse(X9.Text);
             double[] inv = new double[9];
-            double[] eigenvalue = new double[3];
+            double[] eigenvalue = new double[4];
             eigenvalue = CharacterOfMatrix(x);
             double[] res = new double[10];
             x = CharacterMatrix(x, eigenvalue);
@@ -101,7 +102,7 @@ namespace Практическая_работа__1
         //Нахождение характеристического многочлена матрицы и нахождение его корней 
         private double[] CharacterOfMatrix(int[] matrix)
         {
-            double[] resCharacter = new double[3];
+            double[] resCharacter = new double[4];
             //Коэффициенты для кубического уравнения
             int a, b, c;
             a = -1;
@@ -183,18 +184,18 @@ namespace Практическая_работа__1
         //Вывод
         private void PrintResult(double[] res)
         {
-            string s1 = Convert.ToString(res[4]) + " +i" + Convert.ToString(res[8]);
-            string s2 = Convert.ToString(res[4]) + " -i" + Convert.ToString(res[8]);
+            string s1 = Convert.ToString(res[4]) + " + i" + Convert.ToString(res[8]);
+            string s2 = Convert.ToString(res[4]) + " - i" + Convert.ToString(res[8]);
             Thread.Sleep(500);
             X1.Text = Convert.ToString(res[0]);
             X2.Text = Convert.ToString(res[1]);
-            X3.Text = Convert.ToString(res[2]);
-            if (res[9] == 1) { X4.Text = s1; } else { X4.Text = Convert.ToString(res[3]); }
-            X5.Text = Convert.ToString(res[4]);
+            X3.Text = Convert.ToString(res[2]);            
+            X4.Text = Convert.ToString(res[3]);
+            if (res[9] == 1) { X5.Text = s1; } else { X5.Text = Convert.ToString(res[4]); }
             X6.Text = Convert.ToString(res[5]);
             X7.Text = Convert.ToString(res[6]);
             X8.Text = Convert.ToString(res[7]);
-            if (res[9] == 1) { X9.Text = s2; } else { X9.Text = Convert.ToString(res[9]); }
+            if (res[9] == 1) { X9.Text = s2; } else { X9.Text = Convert.ToString(res[8]); }
         }
 
         private double[] st(double[] eigen, int[] matrix)
@@ -219,7 +220,7 @@ namespace Практическая_работа__1
         //Составление характеристической матрицы
         private int[] CharacterMatrix(int[] matrix, double[] eigenval)
         {
-            int[] res = new int[9];
+            int[] res = new int[10];
             res[0] = matrix[0] - (int)eigenval[0];
             res[1] = matrix[1];
             res[2] = matrix[2];
@@ -229,13 +230,14 @@ namespace Практическая_работа__1
             res[6] = matrix[6];
             res[7] = matrix[7];
             res[8] = matrix[8] - (int)eigenval[2];
+            res[9] = Convert.ToInt32(eigenval[3]);
             return res;
         }
 
         //Собственные значения разные
         private double[] Answer1(double[] x)
         {
-            double[] answer = new double[9];
+            double[] answer = new double[10];
             answer[0] = x[0];
             answer[1] = 0;
             answer[2] = 0;
@@ -245,6 +247,7 @@ namespace Практическая_работа__1
             answer[6] = 0;
             answer[7] = 0;
             answer[8] = x[2];
+            answer[9] = x[3];
             return answer;
         }
 
@@ -252,7 +255,7 @@ namespace Практическая_работа__1
         private double[] Answer2(double[] x, int[] matrix)
         {
             int rank = Rank(matrix);
-            double[] answer = new double[9];
+            double[] answer = new double[10];
             answer[0] = x[0];
             if (rank == 1) { answer[1] = 1; } else if (rank == 2) { answer[1] = 1; } else { answer[1] = 0; }
             answer[2] = 0;
@@ -262,6 +265,7 @@ namespace Практическая_работа__1
             answer[6] = 0;
             answer[7] = 0;
             answer[8] = x[2];
+            answer[9] = x[3];
             return answer;
         }
 
@@ -271,11 +275,11 @@ namespace Практическая_работа__1
             double[] answer = new double[10];
             int rank = Rank(matrix);
             answer[0] = x[0];
-            if (rank != 1 && x[0] == x[1]) { answer[1] = 1; } else { answer[1] = 0; }
+            if (rank == 1 && x[0] == x[1]) { answer[1] = 1; } else { answer[1] = 0; }
             answer[2] = 0;
             answer[3] = 0;
             answer[4] = x[1]; 
-            if (rank != 1 && x[1] == x[2]) { answer[5] = 1; } else { answer[5] = 0; }
+            if (rank == 1 && x[1] == x[2]) { answer[5] = 1; } else { answer[5] = 0; }
             answer[6] = 0;
             answer[7] = 0;
             answer[8] = x[2];
