@@ -194,7 +194,6 @@ namespace Практическая_работа__1
             {
                 string s1 = Convert.ToString(res[4]) + " + i" + Convert.ToString(res[8]);
                 string s2 = Convert.ToString(res[4]) + " - i" + Convert.ToString(res[8]);
-                //Thread
                 X1.Text = Convert.ToString(res[0]);
                 X2.Text = Convert.ToString(res[1]);
                 X3.Text = Convert.ToString(res[2]);
