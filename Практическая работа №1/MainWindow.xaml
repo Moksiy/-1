@@ -5,22 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Практическая_работа__1"
         mc:Ignorable="d"
-        Title="" Height="400" Width="500" ResizeMode="NoResize">
-    <Grid Height="400" Background="#FF2E2E2E" Width="500">
+        Title="" Height="400" Width="900" ResizeMode="NoResize">
+    <Grid Height="400" Background="#FF2E2E2E" Width="900">
         <Button Name ="Calculate" Content="Рассчитать" Margin="182,315,182,0" VerticalAlignment="Top" Height="40" RenderTransformOrigin="0.5,0.5" Background="#FF8C8C8C" FontFamily="Yu Gothic UI Semibold" FontSize="22" Click="Button_Click"/>
         <TextBox Name ="X1" HorizontalAlignment="Left" Height="60" Margin="50,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" FontSize="20" Background="#FF898989" SelectionOpacity="4" TextDecorations="{x:Null}" TextAlignment="Center" />
-        <TextBox Name ="X2" HorizontalAlignment="Left" Height="60" Margin="192,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111
+        <TextBox Name ="X2" HorizontalAlignment="Left" Height="60" Margin="182,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111
                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
-        <TextBox Name ="X3" HorizontalAlignment="Left" Height="60" Margin="331,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111
+        <TextBox Name ="X3" HorizontalAlignment="Left" Height="60" Margin="315,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111
                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
-        <TextBox Name ="X5" HorizontalAlignment="Left" Height="60" Margin="192,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111
+        <TextBox Name ="X5" HorizontalAlignment="Left" Height="60" Margin="182,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111
                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
-        <TextBox Name ="X6" HorizontalAlignment="Left" Height="60" Margin="331,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111
+        <TextBox Name ="X6" HorizontalAlignment="Left" Height="60" Margin="315,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111
                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
         <TextBox Name ="X4" HorizontalAlignment="Left" Height="60" Margin="50,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
-        <TextBox Name ="X8" Margin="192,210,197,130" TextWrapping="Wrap" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
-        <TextBox Name ="X9" Margin="331,210,58,130" TextWrapping="Wrap" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox Name ="X8" Margin="182,210,607,130" TextWrapping="Wrap" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox Name ="X9" Margin="315,210,474,130" TextWrapping="Wrap" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
         <TextBox Name ="X7" HorizontalAlignment="Left" Height="60" Margin="50,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
         <Button Content="" Height="10" VerticalAlignment="Top" Margin="50,0" Click="Button_Click_1"/>
+        <TextBox x:Name ="Answer_1" HorizontalAlignment="Left" Height="60" Margin="468,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox x:Name ="Answer_2" HorizontalAlignment="Left" Height="60" Margin="604,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox x:Name ="Answer_3" HorizontalAlignment="Left" Height="60" Margin="739,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox x:Name ="Answer_4" HorizontalAlignment="Left" Height="60" Margin="468,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox x:Name ="Answer_5" HorizontalAlignment="Left" Height="60" Margin="604,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox x:Name ="Answer_6" HorizontalAlignment="Left" Height="60" Margin="739,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox x:Name ="Answer_7" HorizontalAlignment="Left" Height="60" Margin="468,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox x:Name ="Answer_8" HorizontalAlignment="Left" Height="60" Margin="604,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <TextBox x:Name ="Answer_9" HorizontalAlignment="Left" Height="60" Margin="739,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111                  " FontSize="20" Background="#FF898989" TextAlignment="Center"/>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="255" Margin="441,15,0,0" Stroke="Black" VerticalAlignment="Top" Width="14"/>
+        <TextBox x:Name ="Degree" HorizontalAlignment="Left" Height="31" Margin="426,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="20" Background="#FF898989" TextAlignment="Center"/>
     </Grid>
 </Window>

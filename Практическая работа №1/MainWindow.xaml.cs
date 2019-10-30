@@ -37,7 +37,7 @@ namespace Практическая_работа__1
             InitializeComponent();
         }
 
-        
+
 
         //Главная конпка РАССЧИТАТЬ
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -134,8 +134,8 @@ namespace Практическая_работа__1
                     X = Math.Abs(R) / Math.Sqrt(Math.Pow(Q, 3));
                     FI = (Math.Log(X + Math.Sqrt(X * X - 1))) / 3;
                     res[0] = (-2 * Math.Sign(R) * Math.Sqrt(Q) * Math.Cosh(FI)) - aa / 3;
-                    res[1] = Math.Sign(R)*Math.Sqrt(Q)*Math.Cosh(FI) - aa/3;
-                    res[2] = Math.Sqrt(3)*Math.Sqrt(Q)*Math.Sinh(FI);
+                    res[1] = Math.Sign(R) * Math.Sqrt(Q) * Math.Cosh(FI) - aa / 3;
+                    res[2] = Math.Sqrt(3) * Math.Sqrt(Q) * Math.Sinh(FI);
                     res[3] = 1;
                 }
                 else if (Q < 0)
@@ -143,15 +143,15 @@ namespace Практическая_работа__1
                     X = Math.Abs(R) / Math.Sqrt(Math.Pow(Math.Abs(Q), 3));
                     FI = (Math.Log(X + Math.Sqrt(X * X + 1))) / 3;
                     res[0] = (-2 * Math.Sign(R) * Math.Sqrt(Math.Abs(Q)) * Math.Sinh(FI)) - aa / 3;
-                    res[1] = Math.Sign(R)*Math.Sqrt(Math.Abs(Q))*Math.Sinh(FI) - aa/3;
-                    res[2] = Math.Sqrt(3)*Math.Sqrt(Math.Abs(Q))*Math.Cosh(FI);
+                    res[1] = Math.Sign(R) * Math.Sqrt(Math.Abs(Q)) * Math.Sinh(FI) - aa / 3;
+                    res[2] = Math.Sqrt(3) * Math.Sqrt(Math.Abs(Q)) * Math.Cosh(FI);
                     res[3] = 1;
                 }
                 else
                 {
-                    res[0] = -Math.Sqrt(Math.Sqrt(c - (Math.Pow(aa,3)/27))) - aa/3;
-                    res[1] = -(a+res[0]/2);
-                    res[2] = Math.Sqrt(Math.Abs((aa-3*res[0])*(aa + res[0])-4*bb));
+                    res[0] = -Math.Sqrt(Math.Sqrt(c - (Math.Pow(aa, 3) / 27))) - aa / 3;
+                    res[1] = -(a + res[0] / 2);
+                    res[2] = Math.Sqrt(Math.Abs((aa - 3 * res[0]) * (aa + res[0]) - 4 * bb));
                     res[3] = 1;
                 }
             }
@@ -161,9 +161,9 @@ namespace Практическая_работа__1
                 res[1] = Signum(R) * Math.Sqrt(Q) - (aa / 3);
                 res[2] = res[1];
             }
-            //res[0] = Math.Round(res[0]);
-            //res[1] = Math.Round(res[1]);
-            //res[2] = Math.Round(res[2]);
+            res[0] = Math.Round(res[0]);
+            res[1] = Math.Round(res[1]);
+            res[2] = Math.Round(res[2]);
             return res;
         }
 
@@ -182,7 +182,7 @@ namespace Практическая_работа__1
         private void PrintResult(double[] res)
         {
             bool result = false;
-            foreach(var r in res)
+            foreach (var r in res)
             {
                 if (double.IsNaN(r) || double.IsInfinity(r))
                 {
@@ -203,6 +203,7 @@ namespace Практическая_работа__1
                 X7.Text = Convert.ToString(res[6]);
                 X8.Text = Convert.ToString(res[7]);
                 if (res[9] == 1) { X9.Text = s2; } else { X9.Text = Convert.ToString(res[8]); }
+                Degree_Function(res);
             }
         }
 
@@ -288,8 +289,8 @@ namespace Практическая_работа__1
             if (rank != 2 && x[0] == x[1] && matrix[9] != 1) { if (rank == 0) { answer[1] = 0; } else { answer[1] = 1; } } else { answer[1] = 0; }
             answer[2] = 0;
             answer[3] = 0;
-            answer[4] = x[1]; 
-            answer[5] = 0; 
+            answer[4] = x[1];
+            answer[5] = 0;
             answer[6] = 0;
             answer[7] = 0;
             answer[8] = x[2];
@@ -334,8 +335,41 @@ namespace Практическая_работа__1
         private double Signum(double a)
         {
             double result;
-            if (a > 0) { result = 1; } else if(a < 0) { result = -1; } else { result = 0; }
+            if (a > 0) { result = 1; } else if (a < 0) { result = -1; } else { result = 0; }
             return result;
+        }
+
+        private void Degree_Function(double[] answer)
+        {
+            //получаем степень
+            int degree;
+            if (Int32.TryParse(Degree.Text, out degree) && degree > 0)
+            {
+                //Массив для промежуточных вычислений
+                double[] computing = new double[9];
+                for(int i = 0; i < 9; i++)
+                {
+                    //Копирование элемента
+                    computing[i] = answer[i];
+                }
+
+                //Основной цикл возведения в степень
+                for(int i = 1; i < degree; i++)
+                {
+
+                }
+
+                //Выводим результат
+                Answer_1.Text = Convert.ToString(answer[0]);
+                Answer_2.Text = Convert.ToString(answer[1]);
+                Answer_3.Text = Convert.ToString(answer[2]);
+                Answer_4.Text = Convert.ToString(answer[3]);
+                Answer_5.Text = Convert.ToString(answer[4]);
+                Answer_6.Text = Convert.ToString(answer[5]);
+                Answer_7.Text = Convert.ToString(answer[6]);
+                Answer_8.Text = Convert.ToString(answer[7]);
+                Answer_9.Text = Convert.ToString(answer[8]);
+            }else { MessageBox.Show("Некорректная степень"); }
         }
 
 
